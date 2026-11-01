@@ -1,0 +1,38 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Dashboard</h2>
+<p>Library overview and statistics</p>
+
+<div class="stats">
+
+    <div class="stat">
+        <h3>Total Books</h3>
+        <h2>{{ books }}</h2>
+    </div>
+
+    <div class="stat">
+        <h3>Borrowers</h3>
+        <h2>{{ borrowers }}</h2>
+    </div>
+
+    <div class="stat">
+        <h3>Books Issued</h3>
+        <h2>{{ issued }}</h2>
+    </div>
+
+    <div class="stat">
+        <h3>Available Copies</h3>
+        <h2>{{ available }}</h2>
+    </div>
+
+    <div class="stat">
+        <h3>Overdue Books</h3>
+        <h2>{{ overdue }}</h2>
+    </div>
+
+</div>
+
+{% endblock %}

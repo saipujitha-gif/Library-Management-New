@@ -1,0 +1,93 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Issue and Return Books</h2>
+
+<div class="card">
+
+    <h3>Issue a Book</h3>
+    <p>Loan period: 14 days</p>
+
+    <form method="POST">
+
+        Select Book
+
+        <select name="book_id" required>
+            {% for b in book_list %}
+            <option value="{{ b.book_id }}">
+                {{ b.title }} ({{ b.copies_available }} available)
+            </option>
+            {% endfor %}
+        </select>
+
+        Select Borrower
+
+        <select name="borrower_id" required>
+            {% for b in borrower_list %}
+            <option value="{{ b.borrower_id }}">
+                {{ b.borrower_name }} - {{ b.roll_no }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit"
+                {% if not book_list or not borrower_list %}disabled{% endif %}>
+            Issue Book
+        </button>
+
+    </form>
+
+</div>
+
+<h3>Loan Records</h3>
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Book</th>
+        <th>Borrower</th>
+        <th>Issue Date</th>
+        <th>Due Date</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    {% for l in records %}
+
+    <tr>
+
+        <td>{{ l.loan_id }}</td>
+        <td>{{ l.title }}</td>
+        <td>{{ l.borrower_name }} ({{ l.roll_no }})</td>
+        <td>{{ l.issue_date }}</td>
+        <td>{{ l.due_date }}</td>
+
+        <td>
+            {% if l.return_date %}
+                Returned
+            {% elif l.due_date < today %}
+                Overdue
+            {% else %}
+                Issued
+            {% endif %}
+        </td>
+
+        <td>
+            {% if not l.return_date %}
+                <a href="{{ url_for('loans.return_book', loan_id=l.loan_id) }}"
+                   onclick="return confirmReturn()">Return Book</a>
+            {% else %}
+                -
+            {% endif %}
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

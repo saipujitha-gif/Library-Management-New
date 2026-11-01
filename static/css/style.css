@@ -1,0 +1,157 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: white;
+    color: #263445;
+}
+
+header {
+    background: #17365D;
+    color: white;
+    padding: 18px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h2 {
+    margin: 0;
+    font-size: 21px;
+}
+
+nav {
+    background: #17365D;
+    padding: 0 28px 16px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 25px;
+    max-width: 1250px;
+    margin: auto;
+}
+
+h2, h3 {
+    color: #17365D;
+}
+
+.card {
+    border: 1px solid #d7dce3;
+    padding: 18px;
+    background: white;
+    margin-bottom: 18px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.stat {
+    border: 1px solid #17365D;
+    padding: 18px;
+}
+
+.stat h2 {
+    font-size: 27px;
+    margin: 8px 0;
+}
+
+input, select {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #aaa;
+    margin: 6px 0 14px;
+}
+
+button, .btn {
+    background: #17365D;
+    color: white;
+    border: 0;
+    padding: 10px 16px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button:hover, .btn:hover {
+    background: #254d7d;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+th, td {
+    padding: 11px;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-size: 14px;
+}
+
+th {
+    background: #17365D;
+    color: white;
+}
+
+.success {
+    color: #16803c;
+    background: #eaf6ed;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.error {
+    color: #c62828;
+    background: #fdecec;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+form.inline {
+    display: inline;
+}
+
+small {
+    color: #666;
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 14px;
+    }
+
+    header {
+        padding: 15px;
+    }
+
+    nav {
+        padding: 0 15px 15px;
+    }
+}

@@ -1,0 +1,75 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Book Management</h2>
+
+<div class="card">
+
+    <h3>Add New Book</h3>
+
+    <form method="POST">
+
+        ISBN
+        <input name="isbn">
+
+        Title
+        <input name="title" required>
+
+        Author
+        <input name="author" required>
+
+        Category
+        <input name="category">
+
+        Total Copies
+        <input type="number" name="copies" min="1" value="1" required>
+
+        <button type="submit">Add Book</button>
+
+    </form>
+
+</div>
+
+<h3>Book List</h3>
+
+<form method="GET">
+    <input name="search"
+           placeholder="Search by title, author or ISBN"
+           value="{{ search }}">
+    <button type="submit">Search</button>
+</form>
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>ISBN</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Total</th>
+        <th>Available</th>
+        <th>Action</th>
+    </tr>
+
+    {% for b in records %}
+    <tr>
+        <td>{{ b.book_id }}</td>
+        <td>{{ b.isbn or '-' }}</td>
+        <td>{{ b.title }}</td>
+        <td>{{ b.author }}</td>
+        <td>{{ b.category or '-' }}</td>
+        <td>{{ b.total_copies }}</td>
+        <td>{{ b.copies_available }}</td>
+        <td>
+            <a href="{{ url_for('books.delete', book_id=b.book_id) }}"
+               onclick="return confirmDelete()">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}

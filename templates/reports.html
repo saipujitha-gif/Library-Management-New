@@ -1,0 +1,105 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Reports and Analytics</h2>
+
+<p>Library statistics and borrowing analysis</p>
+
+<div class="actions">
+    <a class="btn" href="{{ url_for('exports.excel') }}">Export Excel</a>
+    <a class="btn" href="{{ url_for('exports.pdf') }}">Export PDF</a>
+    <a class="btn" href="{{ url_for('exports.word') }}">Export Word</a>
+</div>
+
+<div class="card">
+    <h3>Book Distribution by Category</h3>
+    <img src="{{ url_for('static', filename='charts/category_pie.png') }}"
+         alt="Category Pie Chart"
+         style="width:100%;max-width:600px">
+</div>
+
+<div class="card">
+    <h3>Monthly Borrowing Trends</h3>
+    <img src="{{ url_for('static', filename='charts/monthly_trend.png') }}"
+         alt="Monthly Borrowing Chart"
+         style="width:100%;max-width:750px">
+</div>
+
+<div class="card">
+    <h3>Most Borrowed Books</h3>
+    <img src="{{ url_for('static', filename='charts/most_borrowed.png') }}"
+         alt="Most Borrowed Books Chart"
+         style="width:100%;max-width:750px">
+</div>
+
+<h3>Category Statistics</h3>
+
+<table>
+    <tr>
+        <th>Category</th>
+        <th>Number of Books</th>
+    </tr>
+
+    {% for x in categories %}
+    <tr>
+        <td>{{ x.category }}</td>
+        <td>{{ x.total }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>Most Borrowed Books</h3>
+
+<table>
+    <tr>
+        <th>Book</th>
+        <th>Times Borrowed</th>
+    </tr>
+
+    {% for x in most %}
+    <tr>
+        <td>{{ x.title }}</td>
+        <td>{{ x.total }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>Monthly Borrowing Statistics</h3>
+
+<table>
+    <tr>
+        <th>Month</th>
+        <th>Books Issued</th>
+    </tr>
+
+    {% for x in monthly %}
+    <tr>
+        <td>{{ x.month }}</td>
+        <td>{{ x.total }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>Overdue Books</h3>
+
+<table>
+    <tr>
+        <th>Book</th>
+        <th>Borrower</th>
+        <th>Roll Number</th>
+        <th>Due Date</th>
+    </tr>
+
+    {% for x in overdue %}
+    <tr>
+        <td>{{ x.title }}</td>
+        <td>{{ x.borrower_name }}</td>
+        <td>{{ x.roll_no }}</td>
+        <td>{{ x.due_date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
